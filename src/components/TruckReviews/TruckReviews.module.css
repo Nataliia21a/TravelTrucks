@@ -1,0 +1,58 @@
+.container {
+}
+
+.reviewsList {
+  width: 631px;
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.userIcon {
+  border-radius: 60px;
+  width: 60px;
+  height: 60px;
+  background: #f2f4f7;
+  position: relative;
+}
+
+.firstLater {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33333;
+  color: #e44848;
+  margin: 0 auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.name {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #101828;
+}
+
+.svgList {
+  display: flex;
+  gap: 4px;
+}
+
+.textReview {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #475467;
+}

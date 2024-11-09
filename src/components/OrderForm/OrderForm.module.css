@@ -1,0 +1,82 @@
+.container {
+  border: 1px solid #dadde1;
+  border-radius: 10px;
+  padding: 44px;
+  /* width: 641px; */
+}
+
+.orderFormInfo {
+  width: 527px;
+  margin-bottom: 24px;
+}
+
+.orderFormTitle {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  color: #101828;
+  margin-bottom: 8px;
+}
+
+.orderFormDescription {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #6c717b;
+}
+
+.form {
+  width: 527px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.input,
+.inputComment {
+  border-radius: 12px;
+  border: none;
+  padding: 18px;
+  /* width: 527px;
+  height: 60px; */
+  background: #f7f7f7;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #101828;
+}
+
+.inputComment {
+  resize: none;
+  margin-bottom: 10px;
+}
+
+.inputComment:focus {
+  outline: none;
+}
+
+.input::placeholder {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #6c717b;
+}
+
+.formBtn {
+  border-radius: 200px;
+  padding: 16px 16px;
+  width: 166px;
+  height: 56px;
+  background: #e44848;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: #fff;
+  margin: 0 auto;
+}

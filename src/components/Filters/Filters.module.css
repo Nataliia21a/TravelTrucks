@@ -1,0 +1,142 @@
+.container {
+  max-width: 360px;
+}
+
+.locationFilter {
+  margin-bottom: 40px;
+}
+
+.lableLocation {
+}
+
+.locationText {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #6c717b;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.fildLocation {
+  width: 100%;
+  height: 56px;
+  border-radius: 12px;
+  padding: 16px 20px 16px 46px;
+  box-sizing: border-box;
+  background: #f7f7f7;
+  border: none;
+}
+
+.inputBlock {
+  position: relative;
+  display: block;
+}
+
+.locationSvg {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.fildLocation::placeholder {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #6c717b;
+}
+
+.filters {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #475467;
+  margin-bottom: 32px;
+}
+
+.filtersTitle {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  color: #101828;
+  margin-bottom: 24px;
+}
+
+.line {
+  width: 100%;
+  height: 1px;
+  background-color: #dadde1;
+  margin-bottom: 24px;
+}
+
+.filtersList,
+.vehicleList {
+  width: 100%;
+  display: flex;
+  cursor: pointer;
+  flex-wrap: wrap;
+  column-gap: 12px;
+  row-gap: 8px;
+  margin-bottom: 32px;
+}
+
+.filtersItem {
+  width: 112px;
+  height: 96px;
+  border: 1px solid #dadde1;
+  border-radius: 12px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.label {
+}
+
+.chekInput {
+  display: none;
+}
+
+.checkboxContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.svg {
+  margin-bottom: 8px;
+}
+
+.checkboxText {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: #101828;
+}
+
+.vehicleList {
+  margin-bottom: 40px;
+}
+
+.btn {
+  border-radius: 200px;
+  padding: 16px 60px;
+  width: 166px;
+  height: 56px;
+  background: #e44848;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: #fff;
+}
