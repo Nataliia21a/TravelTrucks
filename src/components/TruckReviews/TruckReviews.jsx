@@ -1,77 +1,40 @@
 import css from "./TruckReviews.module.css";
+import clsx from "clsx";
 
-export default function TruckReviews() {
+export default function TruckReviews({ camper }) {
   return (
-    <div className={css.container}>
-      <ul className={css.reviewsList}>
-        <li>
-          <div className={css.userInfo}>
-            <div className={css.userIcon}>
-              <p className={css.firstLater}>B</p>
-            </div>
-            <div>
-              <p className={css.name}>Bob</p>
-              <div className={css.svgList}>
-                <svg className={css.svgStar} width={16} height={16}>
-                  <use href="/svg/symbol-defs.svg#icon-star"></use>
-                </svg>
-                <svg className={css.svgStar} width={16} height={16}>
-                  <use href="/svg/symbol-defs.svg#icon-star"></use>
-                </svg>
-                <svg className={css.svgStar} width={16} height={16}>
-                  <use href="/svg/symbol-defs.svg#icon-star"></use>
-                </svg>
-                <svg className={css.svgStar} width={16} height={16}>
-                  <use href="/svg/symbol-defs.svg#icon-star"></use>
-                </svg>
-                <svg className={css.svgStar} width={16} height={16}>
-                  <use href="/svg/symbol-defs.svg#icon-star"></use>
-                </svg>
+    camper && (
+      <div className={css.container}>
+        <ul className={css.reviewsList}>
+          {camper.reviews.map((review, index) => (
+            <li key={index}>
+              <div className={css.userInfo}>
+                <div className={css.userIcon}>
+                  <p className={css.firstLater}>{review.reviewer_name[0]}</p>
+                </div>
+                <div>
+                  <p className={css.name}>{review.reviewer_name}</p>
+                  <div className={css.svgList}>
+                    {[...Array(5)].map((_, starIndex) => (
+                      <svg
+                        key={starIndex}
+                        className={clsx(css.svgStar, {
+                          [css.active]: starIndex < review.reviewer_rating,
+                        })}
+                        width={16}
+                        height={16}
+                      >
+                        <use href="/svg/symbol-defs.svg#icon-star"></use>
+                      </svg>
+                    ))}
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          <p className={css.textReview}>
-            The Mavericks panel truck was a perfect choice for my solo road
-            trip. Compact, easy to drive, and had all the essentials. The
-            kitchen facilities were sufficient, and the overall experience was
-            fantastic.
-          </p>
-        </li>
-        <li>
-          <div className={css.userInfo}>
-            <div className={css.userIcon}>
-              <p className={css.firstLater}>B</p>
-            </div>
-            <div>
-              <p className={css.name}>Bob</p>
-              <div className={css.svgList}>
-                <svg className={css.svgStar} width={16} height={16}>
-                  <use href="/svg/symbol-defs.svg#icon-star"></use>
-                </svg>
-                <svg className={css.svgStar} width={16} height={16}>
-                  <use href="/svg/symbol-defs.svg#icon-star"></use>
-                </svg>
-                <svg className={css.svgStar} width={16} height={16}>
-                  <use href="/svg/symbol-defs.svg#icon-star"></use>
-                </svg>
-                <svg className={css.svgStar} width={16} height={16}>
-                  <use href="/svg/symbol-defs.svg#icon-star"></use>
-                </svg>
-                <svg className={css.svgStar} width={16} height={16}>
-                  <use href="/svg/symbol-defs.svg#icon-star"></use>
-                </svg>
-              </div>
-            </div>
-          </div>
-          <p className={css.textReview}>
-            The Mavericks panel truck was a perfect choice for my solo road
-            trip. Compact, easy to drive, and had all the essentials. The
-            kitchen facilities were sufficient, and the overall experience was
-            fantastic.
-          </p>
-        </li>
-      </ul>
-      <p>Bob</p>
-    </div>
+              <p className={css.textReview}>{review.comment}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
   );
 }

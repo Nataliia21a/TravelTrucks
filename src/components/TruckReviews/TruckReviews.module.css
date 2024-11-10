@@ -56,3 +56,7 @@
   line-height: 1.5;
   color: #475467;
 }
+
+.svgStar.active {
+  --color3: #ffc531;
+}
