@@ -1,6 +1,25 @@
+import { useSearchParams } from "react-router-dom";
 import css from "../Filters/Filters.module.css";
+import { useState } from "react";
 
 export default function Filters() {
+  const [hasAccepted, setHasAccepted] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const locationFilter = searchParams.get("location") ?? "";
+
+  const changeLocationFilter = (newLocation) => {
+    searchParams.set("location", newLocation);
+    setSearchParams(searchParams);
+  };
+
+  const handleChange = (e) => {
+    changeLocationFilter(e.target.value);
+  };
+
+  const handleCheck = (e) => {
+    setHasAccepted(e.target.checked);
+  };
+
   return (
     <div className={css.container}>
       <div className={css.locationFilter}>
@@ -12,6 +31,8 @@ export default function Filters() {
               className={css.fildLocation}
               type="text"
               placeholder="City"
+              value={locationFilter}
+              onChange={handleChange}
             />
             <svg className={css.locationSvg} height={20} width={20}>
               <use href="/svg/symbol-defs.svg#icon-Map"></use>
@@ -28,7 +49,13 @@ export default function Filters() {
       <ul className={css.filtersList}>
         <li className={css.filtersItem}>
           <label className={css.label}>
-            <input className={css.chekInput} type="checkbox" name="AC" />
+            <input
+              className={css.chekInput}
+              type="checkbox"
+              name="AC"
+              checked={hasAccepted}
+              onChange={handleCheck}
+            />
             <span className={css.checkboxContent}>
               <svg className={css.svg} height={32} width={32}>
                 <use href="/svg/symbol-defs.svg#icon-wind"></use>
