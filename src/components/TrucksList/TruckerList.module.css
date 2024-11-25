@@ -150,3 +150,8 @@
   display: block;
   margin: 0 auto;
 }
+
+.btnLoadMore:hover,
+.btnLoadMore:active {
+  border: 1px solid #d84343;
+}
