@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchCamperById, fetchCampers } from "./operations";
+import {
+  fetchCamperById,
+  fetchCampers,
+  fetchCampersByLocation,
+} from "./operations";
 
 const slice = createSlice({
   name: "campers",
@@ -8,20 +12,27 @@ const slice = createSlice({
     page: 1,
     limit: 4,
     selectedCamper: null,
+    location: "",
     total: 0,
     loading: false,
     error: false,
   },
   reducers: {
+    setLocation: (state, action) => {
+      state.location = action.payload;
+    },
     incrementPage: (state) => {
       state.page += 1;
+    },
+    clearItems: (state) => {
+      state.items = [];
     },
   },
   extraReducers: (builder) =>
     builder
       .addCase(fetchCampers.pending, (state) => {
         state.loading = true;
-        state.error = null;
+        state.error = false;
       })
       .addCase(fetchCampers.fulfilled, (state, action) => {
         const newItems = action.payload.items;
@@ -35,6 +46,21 @@ const slice = createSlice({
         state.loading = false;
       })
       .addCase(fetchCampers.rejected, (state) => {
+        state.loading = false;
+        state.error = true;
+      })
+      .addCase(fetchCampersByLocation.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(fetchCampersByLocation.fulfilled, (state, action) => {
+        state.items = action.payload.items;
+
+        state.total = action.payload.total;
+        state.loading = false;
+        state.error = false;
+      })
+      .addCase(fetchCampersByLocation.rejected, (state) => {
         state.loading = false;
         state.error = true;
       })
@@ -52,5 +78,5 @@ const slice = createSlice({
       }),
 });
 
-export const { incrementPage } = slice.actions;
+export const { incrementPage, setLocation, clearItems } = slice.actions;
 export default slice.reducer;

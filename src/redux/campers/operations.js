@@ -15,6 +15,20 @@ export const fetchCampers = createAsyncThunk(
   }
 );
 
+export const fetchCampersByLocation = createAsyncThunk(
+  "campers/fetchCampersByLocation",
+  async (location, thunkAPI) => {
+    try {
+      const response = await axios.get(`/campers?location=${location}`);
+      console.log(response.data);
+
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const fetchCamperById = createAsyncThunk(
   "campers/fetchCamperById",
   async (camperId, thunkAPI) => {

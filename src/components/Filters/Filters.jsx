@@ -1,6 +1,9 @@
 import { useSearchParams } from "react-router-dom";
 import css from "../Filters/Filters.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCampersByLocation } from "../../redux/campers/operations";
+import { setLocation, clearItems } from "../../redux/campers/slice";
 
 export default function Filters() {
   const [hasAccepted, setHasAccepted] = useState(false);
@@ -12,8 +15,20 @@ export default function Filters() {
     setSearchParams(searchParams);
   };
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (locationFilter) {
+      dispatch(setLocation(locationFilter));
+      dispatch(fetchCampersByLocation(locationFilter));
+    }
+  }, [dispatch, locationFilter]);
+
   const handleChange = (e) => {
     changeLocationFilter(e.target.value);
+    dispatch(setLocation(e.target.value));
+    dispatch(fetchCampersByLocation(e.target.value));
+    console.log(e.target.value);
   };
 
   const handleCheck = (e) => {

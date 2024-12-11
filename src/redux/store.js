@@ -13,9 +13,9 @@ import {
 } from "redux-persist";
 
 const campersPersistConfig = {
-  key: "name",
+  key: "location",
   storage,
-  whitelist: ["name"],
+  whitelist: ["location"],
 };
 
 const persistedCampersReducer = persistReducer(
