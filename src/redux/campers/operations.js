@@ -20,7 +20,6 @@ export const fetchCampersByLocation = createAsyncThunk(
   async (location, thunkAPI) => {
     try {
       const response = await axios.get(`/campers?location=${location}`);
-      console.log(response.data);
 
       return response.data;
     } catch (error) {

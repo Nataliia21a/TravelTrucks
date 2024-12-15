@@ -13,8 +13,6 @@ export default function TruckerList() {
       : state.campers.items
   );
 
-  console.log("campers", campers);
-
   const page = useSelector((state) => state.campers.page);
   const limit = useSelector((state) => state.campers.limit);
   // const total = useSelector((state) => state.campers.total);
