@@ -9,6 +9,7 @@ const slice = createSlice({
   name: "campers",
   initialState: {
     items: [],
+    filteredItems: [],
     page: 1,
     limit: 4,
     selectedCamper: null,
@@ -54,8 +55,7 @@ const slice = createSlice({
         state.error = false;
       })
       .addCase(fetchCampersByLocation.fulfilled, (state, action) => {
-        state.items = action.payload.items;
-
+        state.filteredItems = action.payload.items;
         state.total = action.payload.total;
         state.loading = false;
         state.error = false;

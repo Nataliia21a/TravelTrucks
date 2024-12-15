@@ -28,6 +28,7 @@ export default function Filters() {
     changeLocationFilter(e.target.value);
     dispatch(setLocation(e.target.value));
     dispatch(fetchCampersByLocation(e.target.value));
+    dispatch(clearItems());
     console.log(e.target.value);
   };
 

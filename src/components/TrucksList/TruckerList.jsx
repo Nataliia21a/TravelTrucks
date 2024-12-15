@@ -6,10 +6,23 @@ import { Link } from "react-router-dom";
 import { incrementPage } from "../../redux/campers/slice";
 
 export default function TruckerList() {
-  const campers = useSelector((state) => state.campers.items);
+  // const campers = useSelector((state) => state.campers.items);
+  const campers = useSelector((state) =>
+    state.campers.filteredItems.length > 0
+      ? state.campers.filteredItems
+      : state.campers.items
+  );
+
+  console.log("campers", campers);
+
   const page = useSelector((state) => state.campers.page);
   const limit = useSelector((state) => state.campers.limit);
-  const total = useSelector((state) => state.campers.total);
+  // const total = useSelector((state) => state.campers.total);
+  const total = useSelector((state) =>
+    state.campers.filteredItems.length > 0
+      ? state.campers.filteredItems.length
+      : state.campers.total
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -142,7 +155,7 @@ export default function TruckerList() {
           </li>
         ))}
       </ul>
-      {campers.length < total && (
+      {campers.length > 0 && campers.length < total && (
         <button
           className={css.btnLoadMore}
           type="button"
