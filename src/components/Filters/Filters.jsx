@@ -6,7 +6,13 @@ import { fetchCampersByLocation } from "../../redux/campers/operations";
 import { setLocation, clearItems } from "../../redux/campers/slice";
 
 export default function Filters() {
-  const [hasAccepted, setHasAccepted] = useState(false);
+  const [hasAccepted, setHasAccepted] = useState({
+    AC: false,
+    Automatic: false,
+    Kitchen: false,
+    TV: false,
+    Bathroom: false,
+  });
   const [searchParams, setSearchParams] = useSearchParams();
   const locationFilter = searchParams.get("location") ?? "";
 
@@ -32,7 +38,15 @@ export default function Filters() {
   };
 
   const handleCheck = (e) => {
-    setHasAccepted(e.target.checked);
+    // setHasAccepted(e.target.checked);
+    const { name, checked } = e.target;
+    setHasAccepted((prevStateChecked) => ({
+      ...prevStateChecked,
+      [name]: checked,
+    }));
+
+    console.log(e.target.checked);
+    console.log(e.target.value);
   };
 
   return (
@@ -68,7 +82,8 @@ export default function Filters() {
               className={css.chekInput}
               type="checkbox"
               name="AC"
-              checked={hasAccepted}
+              value="AC"
+              checked={hasAccepted.AC}
               onChange={handleCheck}
             />
             <span className={css.checkboxContent}>
@@ -81,7 +96,14 @@ export default function Filters() {
         </li>
         <li className={css.filtersItem}>
           <label className={css.label}>
-            <input className={css.chekInput} type="checkbox" name="Automatic" />
+            <input
+              className={css.chekInput}
+              type="checkbox"
+              name="Automatic"
+              value="Automatic"
+              checked={hasAccepted.Automatic}
+              onChange={handleCheck}
+            />
             <span className={css.checkboxContent}>
               <svg className={css.svg} height={32} width={32}>
                 <use href="/svg/symbol-defs.svg#icon-diagram"></use>
@@ -92,7 +114,14 @@ export default function Filters() {
         </li>
         <li className={css.filtersItem}>
           <label className={css.label}>
-            <input className={css.chekInput} type="checkbox" name="Kitchen" />
+            <input
+              className={css.chekInput}
+              type="checkbox"
+              name="Kitchen"
+              value="Kitchen"
+              checked={hasAccepted.Kitchen}
+              onChange={handleCheck}
+            />
             <span className={css.checkboxContent}>
               <svg className={css.svg} height={32} width={32}>
                 <use href="/svg/symbol-defs.svg#icon-cup-hot"></use>
@@ -103,7 +132,14 @@ export default function Filters() {
         </li>
         <li className={css.filtersItem}>
           <label className={css.label}>
-            <input className={css.chekInput} type="checkbox" name="TV" />
+            <input
+              className={css.chekInput}
+              type="checkbox"
+              name="TV"
+              value="TV"
+              checked={hasAccepted.TV}
+              onChange={handleCheck}
+            />
             <span className={css.checkboxContent}>
               <svg className={css.svg} height={32} width={32}>
                 <use href="/svg/symbol-defs.svg#icon-tv"></use>
@@ -114,7 +150,14 @@ export default function Filters() {
         </li>
         <li className={css.filtersItem}>
           <label className={css.label}>
-            <input className={css.chekInput} type="checkbox" name="Bathroom" />
+            <input
+              className={css.chekInput}
+              type="checkbox"
+              name="Bathroom"
+              value="Bathroom"
+              checked={hasAccepted.Bathroom}
+              onChange={handleCheck}
+            />
             <span className={css.checkboxContent}>
               <svg className={css.svg} height={32} width={32}>
                 <use href="/svg/symbol-defs.svg#icon-ph-shower"></use>
