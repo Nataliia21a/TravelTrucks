@@ -15,9 +15,15 @@ export default function Filters() {
   });
   const [searchParams, setSearchParams] = useSearchParams();
   const locationFilter = searchParams.get("location") ?? "";
+  const equipmentFilter = searchParams.get(`${hasAccepted}`) ?? "";
 
   const changeLocationFilter = (newLocation) => {
     searchParams.set("location", newLocation);
+    setSearchParams(searchParams);
+  };
+
+  const changeEquipmentFilter = (addEquipment) => {
+    searchParams.set(`${Object.keys(hasAccepted)}`, addEquipment);
     setSearchParams(searchParams);
   };
 
@@ -44,9 +50,11 @@ export default function Filters() {
       ...prevStateChecked,
       [name]: checked,
     }));
+    changeEquipmentFilter(checked);
 
     console.log(e.target.checked);
-    console.log(e.target.value);
+    console.log(e.target.name);
+    console.log(Object.keys(hasAccepted));
   };
 
   return (
