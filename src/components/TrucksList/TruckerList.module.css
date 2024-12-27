@@ -53,7 +53,8 @@
   color: #101828;
 }
 
-.svgHeart {
+.svgHeart:hover {
+  fill: #e44848;
 }
 
 .priceBlock {
