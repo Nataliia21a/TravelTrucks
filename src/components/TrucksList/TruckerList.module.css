@@ -8,21 +8,30 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
+  box-sizing: border-box;
+
+  /* width: 840px;
+  height: 320px; */
 }
 
 .truckerItem {
   display: flex;
+  align-items: stretch; /* Вирівнює елементи по висоті */
   border: 1px solid #dadde1;
   border-radius: 20px;
   padding: 24px;
   margin: 0;
+  box-sizing: border-box;
 }
 
 .truckImg {
   margin-right: 24px;
-  width: 292px;
+  /* width: 292px; */
   /* height: 320px; */
-  object-fit: cover;
+  /* object-fit: cover; */
+  width: 292px; /* Фіксована ширина */
+  /* height: 100%; Висота буде динамічною */
+  object-fit: cover; /* Для збереження пропорцій */
   border-radius: 10px;
 }
 
