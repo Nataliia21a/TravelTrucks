@@ -37,6 +37,10 @@
 
 .truckDescription {
   width: 524px;
+  flex: 1; /* Займає залишковий простір */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .truckTitle {
@@ -134,8 +138,8 @@
 .btn {
   border-radius: 200px;
   padding: 18px 40px;
-  width: 166px;
-  height: 56px;
+  max-width: 166px;
+  max-height: 56px;
   background: #e44848;
   font-family: "Inter", sans-serif;
   font-weight: 500;
