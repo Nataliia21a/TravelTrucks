@@ -2,7 +2,10 @@ import { useSearchParams } from "react-router-dom";
 import css from "../Filters/Filters.module.css";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { fetchCampersByLocation } from "../../redux/campers/operations";
+import {
+  fetchCampersByEquipment,
+  fetchCampersByLocation,
+} from "../../redux/campers/operations";
 import { setLocation, clearItems } from "../../redux/campers/slice";
 
 export default function Filters() {
@@ -13,17 +16,12 @@ export default function Filters() {
     TV: false,
     Bathroom: false,
   });
+
   const [searchParams, setSearchParams] = useSearchParams();
   const locationFilter = searchParams.get("location") ?? "";
-  const equipmentFilter = searchParams.get(`${hasAccepted}`) ?? "";
 
   const changeLocationFilter = (newLocation) => {
     searchParams.set("location", newLocation);
-    setSearchParams(searchParams);
-  };
-
-  const changeEquipmentFilter = (addEquipment) => {
-    searchParams.set(`${Object.keys(hasAccepted)}`, addEquipment);
     setSearchParams(searchParams);
   };
 
@@ -44,17 +42,18 @@ export default function Filters() {
   };
 
   const handleCheck = (e) => {
-    // setHasAccepted(e.target.checked);
-    const { name, checked } = e.target;
-    setHasAccepted((prevStateChecked) => ({
-      ...prevStateChecked,
-      [name]: checked,
-    }));
-    changeEquipmentFilter(checked);
+    setHasAccepted(e.target.checked);
 
-    console.log(e.target.checked);
-    console.log(e.target.name);
-    console.log(Object.keys(hasAccepted));
+    console.log(e.target.checked, e.target.name);
+
+    const equipment = e.target.name;
+    const equipmenToLowerCase = equipment.toLowerCase();
+    console.log(equipmenToLowerCase);
+
+    const state = e.target.checked;
+    dispatch(fetchCampersByEquipment({ equipment, state }));
+    // console.log(e.target.name);
+    // console.log(Object.keys(hasAccepted));
   };
 
   return (
@@ -107,7 +106,7 @@ export default function Filters() {
             <input
               className={css.chekInput}
               type="checkbox"
-              name="Automatic"
+              name="automatic"
               value="Automatic"
               checked={hasAccepted.Automatic}
               onChange={handleCheck}
@@ -125,7 +124,7 @@ export default function Filters() {
             <input
               className={css.chekInput}
               type="checkbox"
-              name="Kitchen"
+              name="kitchen"
               value="Kitchen"
               checked={hasAccepted.Kitchen}
               onChange={handleCheck}
@@ -161,7 +160,7 @@ export default function Filters() {
             <input
               className={css.chekInput}
               type="checkbox"
-              name="Bathroom"
+              name="bathroom"
               value="Bathroom"
               checked={hasAccepted.Bathroom}
               onChange={handleCheck}
