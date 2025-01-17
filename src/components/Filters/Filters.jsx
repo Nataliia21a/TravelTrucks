@@ -11,10 +11,10 @@ import { setLocation, clearItems } from "../../redux/campers/slice";
 export default function Filters() {
   const [hasAccepted, setHasAccepted] = useState({
     AC: false,
-    Automatic: false,
-    Kitchen: false,
+    automatic: false,
+    kitchen: false,
     TV: false,
-    Bathroom: false,
+    bathroom: false,
   });
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -42,18 +42,21 @@ export default function Filters() {
   };
 
   const handleCheck = (e) => {
-    setHasAccepted(e.target.checked);
-
-    console.log(e.target.checked, e.target.name);
-
-    const equipment = e.target.name;
-    const equipmenToLowerCase = equipment.toLowerCase();
-    console.log(equipmenToLowerCase);
-
-    const state = e.target.checked;
-    dispatch(fetchCampersByEquipment({ equipment, state }));
+    // setHasAccepted(e.target.checked);
+    // console.log(e.target.checked, e.target.name);
+    // const equipment = e.target.name;
+    //  const state = e.target.checked;
+    // dispatch(fetchCampersByEquipment({ equipment, state }));
     // console.log(e.target.name);
     // console.log(Object.keys(hasAccepted));
+
+    const { name, checked } = e.target;
+    setHasAccepted((prevState) => ({
+      ...prevState,
+      [name]: checked,
+    }));
+
+    dispatch(fetchCampersByEquipment({ equipment: name, state: checked }));
   };
 
   return (
@@ -67,7 +70,7 @@ export default function Filters() {
               className={css.fildLocation}
               type="text"
               placeholder="City"
-              value={locationFilter}
+              value={locationFilter || ""}
               onChange={handleChange}
             />
             <svg className={css.locationSvg} height={20} width={20}>
@@ -89,7 +92,7 @@ export default function Filters() {
               className={css.chekInput}
               type="checkbox"
               name="AC"
-              value="AC"
+              // value="AC"
               checked={hasAccepted.AC}
               onChange={handleCheck}
             />
@@ -107,7 +110,7 @@ export default function Filters() {
               className={css.chekInput}
               type="checkbox"
               name="automatic"
-              value="Automatic"
+              // value="Automatic"
               checked={hasAccepted.Automatic}
               onChange={handleCheck}
             />
@@ -125,7 +128,7 @@ export default function Filters() {
               className={css.chekInput}
               type="checkbox"
               name="kitchen"
-              value="Kitchen"
+              // value="Kitchen"
               checked={hasAccepted.Kitchen}
               onChange={handleCheck}
             />
@@ -143,7 +146,7 @@ export default function Filters() {
               className={css.chekInput}
               type="checkbox"
               name="TV"
-              value="TV"
+              // value="TV"
               checked={hasAccepted.TV}
               onChange={handleCheck}
             />
@@ -161,7 +164,7 @@ export default function Filters() {
               className={css.chekInput}
               type="checkbox"
               name="bathroom"
-              value="Bathroom"
+              // value="Bathroom"
               checked={hasAccepted.Bathroom}
               onChange={handleCheck}
             />
